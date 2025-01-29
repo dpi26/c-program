@@ -1,0 +1,23 @@
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if (n == 0) return 1.0; // Base case: x^0 = 1
+        
+        long long exp = n; // Use long long to handle edge case when n = INT_MIN
+        if (exp < 0) {
+            x = 1 / x;  // Invert x for negative exponent
+            exp = -exp; // Convert exponent to positive
+        }
+
+        double result = 1.0;
+        while (exp > 0) {
+            if (exp % 2 == 1) {  // If exponent is odd, multiply x with result
+                result *= x;
+            }
+            x *= x;  // Square the base
+            exp /= 2; // Reduce exponent by half
+        }
+
+        return result;
+    }
+};
